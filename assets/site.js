@@ -1662,8 +1662,18 @@
     tbl = el('div', 'tbl wt-tbl acc-tbl');
     scroll.appendChild(tbl);
     var head = $('.thead', body);
-    if (head) body.insertBefore(scroll, head); else body.appendChild(scroll);
+    /* Review 22 — mobile6 gives an accordion on a phone a .mscroll
+       of its own and puts the rows inside it, so the header is not
+       always a child of the body. Home never saw this because
+       site.js runs before mobile6 boots; the calendar's day list is
+       painted on a click, which is long after. The insertion point
+       is whichever child of the body is holding the header. */
+    var anchor = head;
+    while (anchor && anchor.parentNode !== body) anchor = anchor.parentNode;
+    if (anchor) body.insertBefore(scroll, anchor); else body.appendChild(scroll);
     $$('.thead, .trow', body).forEach(function (n) { tbl.appendChild(n); });
+    var rail = $(':scope > .mscroll', body);
+    if (rail && !rail.children.length) rail.remove();
     return tbl;
   }
 
@@ -2256,7 +2266,16 @@
           var box = $('.e03-feds', card);
           if (box) box.hidden = true;
         }
-        link(wrap, 'conference.html?id=' + c.id);
+        /* Review 22 — a card carrying a Live badge is an offer to
+           watch what is on, and Overview is a page about the
+           conference rather than the thing itself. A live card opens
+           the stop that is live; its tab strip is the way back to
+           Overview, so nothing is lost by starting there. */
+        var liveEv = st.live && st.evs.filter(function (e) {
+          return stopLive(e, today);
+        })[0];
+        link(wrap, liveEv ? ('stop.html?id=' + liveEv.slug)
+                          : ('conference.html?id=' + c.id));
       });
     });
   };
@@ -2697,12 +2716,18 @@
                  !x.classList.contains('games-tbl') &&
                  x.closest('[data-pane="overview"]');
         })[0];
-        var after = stbl && stbl.closest('.tpl-sub');
-        var firstOv = $$('[data-pane="overview"]', content)[0];
-        if (after && after.parentNode) {
-          after.parentNode.insertBefore(wrap, after.nextSibling);
-        } else if (firstOv && firstOv.parentNode) {
-          firstOv.parentNode.insertBefore(wrap, firstOv);
+        /* Review 22 — Daniel: the timeline belongs with the tab
+           strip above it. The strip and the rail state the same six
+           stops, one as somewhere to go and one as how far the
+           season has got; the standings are what the pair of them
+           leads into. It goes back to the head of Overview.
+           .tpl-content is a 40px flex column on a desktop and a 20px
+           one on a phone, so the position is most of the spacing and
+           review22/mobile16 make up the rest. */
+        var anchor = (stbl && stbl.closest('.tpl-sub')) ||
+                     $$('[data-pane="overview"]', content)[0];
+        if (anchor && anchor.parentNode) {
+          anchor.parentNode.insertBefore(wrap, anchor);
         } else {
           content.appendChild(wrap);
         }
@@ -3915,12 +3940,18 @@
 
         var rows = conferenceTable(c.id, g, e.start);
         var complete = all.length && played >= all.length;
-        if (!rows.length) {
-          $$('.trow', node).forEach(function (r) { r.hidden = true; });
-        } else {
-          repeat(node, '.trow', rows.slice(0, 6), function (row, r) {
-            paintStandingRow(row, r, complete);
-          });
+        /* Review 22 — the same table the landing page's Live now
+           accordion draws, built by the same call. A reader who
+           opens a day here and then opens the same conference on
+           the home page was being handed two column sets for one
+           thing. */
+        rows.forEach(function (r) {
+          r.status = (complete && r.rank === 1 && r.tour > 0) ? 'q' : 'r';
+        });
+        var ctbl = accTable(node);
+        if (ctbl) {
+          if (!rows.length) ctbl.innerHTML = '';
+          else wtTable(ctbl, rows, all, { limit: 6, seed: true });
         }
         var view = $$('.lnk, .btn', node).filter(function (l) {
           return /conference/i.test(l.textContent);

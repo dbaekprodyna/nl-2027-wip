@@ -1,0 +1,172 @@
+/* ============================================================
+   Review 22 — 2026-09-05
+   One width for every column, a timeline you can read at a
+   glance, and the two controls that were standing in the wrong
+   place.
+   Loaded after review21.css and before hero.css.
+   ============================================================ */
+
+/* ---- 1  The WT table: every data column the same width -------
+   Round twenty made the header and the body agree with each
+   other; they still did not agree across the row. Six stop
+   columns were flex-grow and the eight around them were fixed,
+   so a 1325px table came out as 130px stops beside a 54px win
+   ratio — the eye reads that as a table that has been assembled
+   rather than laid out.
+
+   Position is the row's index and Federation is its name; those
+   two are what a reader looks along, and they keep their own
+   size (Federation at twice the unit, which is what its flag and
+   code need). Everything to the right of them is a figure, and
+   every figure column is one unit wide, whatever the table's
+   width. The proportions then hold at 1440, in a 908px accordion
+   and at every step between. */
+.wt-tbl .c-pos      { flex: 0 0 40px; width: 40px; padding: 0 6px; }
+.wt-tbl .c-fed      { flex: 2 2 0; width: auto; min-width: 104px; padding: 0 6px 0 8px; }
+.wt-tbl .c-wtseed,
+.wt-tbl .c-wtpts,
+.wt-tbl .c-wtstop,
+.wt-tbl .c-wr,
+.wt-tbl .c-wtscored,
+.wt-tbl .c-pa,
+.wt-tbl .c-st       { flex: 1 1 0; width: auto; min-width: 0; padding: 0 6px; }
+.wt-tbl .c-st       { justify-content: flex-end; }
+
+/* The gutter comes in from 8px to 6px. A cell is content-box
+   here, so the padding is not part of the unit the columns share
+   — it is taken off the row before the share is worked out, and
+   four pixels a column is the difference between "STATUS" and
+   its sort arrow standing on one line and the word breaking in
+   half. Narrower than 900px the table scrolls rather than
+   crushes. */
+.wt-scroll > .wt-tbl { min-width: 900px; }
+.st-perf.wt-tbl      { min-width: 950px; }
+
+/* Round twenty pinned the headings to one line, because at the
+   widths they had then a second line meant something had gone
+   wrong. At one unit a two-word heading takes two lines — "TOUR
+   PTS" over the figures it names, in a 40px row that has the
+   room for it — and that is what keeps the columns even instead
+   of letting the widest label set the width for everyone. */
+.wt-tbl .thead .cell .t-caption {
+  white-space: normal;
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+.wt-tbl .thead .cell-num .t-caption,
+.wt-tbl .thead .c-st .t-caption { text-align: right; }
+.wt-tbl .thead .c-fed .t-caption { text-align: left; }
+
+
+/* ---- 2  S-02 StopTimeline: a mark you can read ---------------
+   The rail was six 7px dots on a 2px line, and the only thing
+   that told a played stop from an unplayed one was whether the
+   dot was black or grey — a distinction of colour alone, at a
+   size where colour is all you get. The dot is opened out to
+   20px so it can carry a 12px icon, and a played stop carries
+   the icon that says played: a check. Live keeps the red circle
+   it already had, and an unplayed stop keeps the plain grey one
+   — there is nothing to state about it yet.
+
+   The check is a background image rather than an injected node,
+   so the design system's own specimen of S-02 draws it too
+   without running any of the site's JavaScript. */
+.s02-marker {
+  height: 20px;
+  gap: 0;
+  padding-left: 0;
+}
+.s02-dot {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
+  border-radius: 999px;
+  background-color: var(--border-subtle);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 12px 12px;
+}
+.s02-line { height: 2px; background: var(--border-subtle); }
+
+.s02-done .s02-dot {
+  background-color: var(--action-default);
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960' fill='%23ffffff'%3E%3Cpath d='M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z'/%3E%3C/svg%3E");
+}
+.s02-done .s02-line { background: var(--action-default); }
+
+/* The live stop is red, and so is the run of line leaving it:
+   red is where the season has got to, and the mark and the line
+   are one statement of that, not two. */
+.s02-live .s02-dot {
+  background-color: var(--status-live);
+  background-image: none;
+}
+.s02-live .s02-line { background: var(--status-live); }
+
+/* The dot grew by thirteen pixels; the label under it keeps the
+   distance it had from the rail. */
+.s02-body { padding-top: 8px; }
+
+
+/* ---- 3  The conference timeline reads before the table -------
+   Round nineteen put the timeline under the standings: the table
+   answers "where does the conference stand", the timeline "how
+   did it get here". Daniel, on seeing it: the timeline is the
+   conference's shape and belongs with the tab strip that states
+   the same six stops — the two are one navigation, and the table
+   is what they lead into. It goes back above the standings, as
+   the first thing in Overview.
+
+   .tpl-content is a 40px flex column on a desktop, so the
+   position alone gives the 40px asked for on both sides of it. */
+.cnf-timeline { margin: 0; }
+
+
+/* ---- 4  Standings: Seed sits beside Federation ---------------
+   Federation was the one column with flex-grow, so on a 1325px
+   table it took 510px and Seed — the column immediately after it
+   — began a third of the way across the page, four inches from
+   the name it belongs to. Federation is given the width its
+   longest name actually needs and Conference, which holds the
+   longest text in the table, takes the slack instead.
+
+   Every column is stated, and stated with `min-width: 0`, for the
+   reason round twenty found in the WT table: a flex item's
+   automatic minimum is its min-content, and a heading's
+   min-content is not its data's. Seed's heading was 79px wide
+   over a 33px cell, so the figures stood 46px left of the word
+   that names them. Standings and Qualification share this table;
+   the games list and the season journey carry none of these
+   column classes and are left alone. */
+@media (min-width: 768px) {
+  .tbl:not(.wt-tbl) > .thead > .c-pos,
+  .tbl:not(.wt-tbl) > .trow  > .c-pos    { flex: 0 0 48px;  width: 48px;  min-width: 0; }
+  .tbl:not(.wt-tbl) > .thead > .c-fed,
+  .tbl:not(.wt-tbl) > .trow  > .c-fed    { flex: 0 0 300px; width: 300px; min-width: 0; }
+  .tbl:not(.wt-tbl) > .thead > .c-wtseed,
+  .tbl:not(.wt-tbl) > .trow  > .c-wtseed { flex: 0 0 90px;  width: 90px;  min-width: 0; }
+  .tbl:not(.wt-tbl) > .thead > .c-conf,
+  .tbl:not(.wt-tbl) > .trow  > .c-conf   { flex: 1 1 180px; min-width: 180px; }
+  .tbl:not(.wt-tbl) > .thead > .c-wr,
+  .tbl:not(.wt-tbl) > .trow  > .c-wr     { flex: 0 0 116px; width: 116px; min-width: 0; }
+  .tbl:not(.wt-tbl) > .thead > .c-pa,
+  .tbl:not(.wt-tbl) > .trow  > .c-pa     { flex: 0 0 124px; width: 124px; min-width: 0; }
+  .tbl:not(.wt-tbl) > .thead > .c-ep,
+  .tbl:not(.wt-tbl) > .trow  > .c-ep     { flex: 0 0 72px;  width: 72px;  min-width: 0; }
+  .tbl:not(.wt-tbl) > .thead > .c-pts,
+  .tbl:not(.wt-tbl) > .trow  > .c-pts    { flex: 0 0 124px; width: 124px; min-width: 0; }
+  .tbl:not(.wt-tbl) > .thead > .c-st,
+  .tbl:not(.wt-tbl) > .trow  > .c-st     { flex: 0 0 80px;  width: 80px;  min-width: 0; }
+}
+
+
+/* ---- 5  a highlighted row keeps the column grid --------------
+   el-04's leading row carries a 4px rule on its left border,
+   which is 4px the row's cells do not have and every other row
+   does: the top row of a conference table stood four pixels right
+   of the heading above it and of the five rows below it. The mark
+   is drawn inside the row instead, where it costs no width. */
+.trow-hi {
+  border-left: 0;
+  box-shadow: inset 4px 0 0 0 var(--action-default);
+}

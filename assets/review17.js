@@ -607,10 +607,14 @@
       preHero();
       made.push(countdownSection(S.opener || '2027-06-04'));
       if (b.find) made.push(b.find);
+      /* Review 22 — Daniel: the sign-up reads before the players.
+         A reader on a pre-season page has come for one thing, the
+         date, and the offer to be told it is the page's own answer;
+         the gallery is what they stay for afterwards. */
+      made.push(ctaSection());
       var gen = nextGenSection(data);
       if (gen) made.push(gen);
       if (b.ad) made.push(b.ad);
-      made.push(ctaSection());
       [b.split, b.photos, b.news].forEach(function (n) { if (n) n.hidden = true; });
     } else {
       /* ---- the off-season page ----------------------------

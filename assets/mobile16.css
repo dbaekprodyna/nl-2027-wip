@@ -1,0 +1,153 @@
+/* ============================================================
+   Mobile 16 — 2026-09-05
+   Tables that keep one column width on a phone, hold their first
+   two columns still while the rest travels, and a handful of
+   controls that were on the wrong side of the screen.
+   Loaded last, after mobile15.css.
+   ============================================================ */
+
+@media (max-width: 767px) {
+
+  /* ---- 1  the pinned pair actually pins ----------------------
+     Round ten gave every table `overflow-x: auto` so it could
+     scroll, and round eighteen wrapped the WT tables in
+     .wt-scroll so they could. Both are scroll containers, and a
+     sticky cell sticks inside the NEAREST one — which was the
+     table itself, a box exactly as wide as its own content and
+     therefore a box that never scrolls. Position and Federation
+     were sticky and had never once stuck.
+
+     Where a .wt-scroll is doing the scrolling, the table inside
+     it stops trying to.                                       */
+  .wt-scroll > .mtbl { overflow: visible; }
+
+  /* The min-width these tables carry for the desktop is wider
+     than the phone's column set; on a phone the widths below are
+     the whole story. */
+  .wt-scroll > .wt-tbl,
+  .st-perf.wt-tbl { min-width: 0; }
+
+  /* ---- 2  one width for every figure column ------------------
+     Same rule as the desktop, at the phone's scale: Position and
+     Federation are the pair that stays put, and every column
+     that travels past them is the same width, so the columns
+     read as a grid rather than as a queue of different boxes.
+     The gutters come in from 12px to 4px, which is what buys
+     another column and a half of screen.
+
+     `min-width: 0` on every one of them is what makes the
+     header and the body agree: a flex item's automatic minimum
+     is its min-content, and a heading's min-content ("SEED" plus
+     a sort arrow) is not its data's ("1"). Standings was drawing
+     a 59px heading over a 21px cell and every column to the
+     right of it was 38px out of step.                         */
+  .mtbl .cell.c-pos {
+    flex: 0 0 30px; width: 30px; min-width: 0;
+    padding: 0 4px; overflow: hidden;
+  }
+  .mtbl .cell.c-fed {
+    flex: 0 0 112px; width: 112px; min-width: 0;
+    padding: 0 4px 0 8px; overflow: hidden;
+  }
+  .mtbl .cell.c-wtseed,
+  .mtbl .cell.c-wtpts,
+  .mtbl .cell.c-wtstop,
+  .mtbl .cell.c-wr,
+  .mtbl .cell.c-wtscored,
+  .mtbl .cell.c-pa,
+  .mtbl .cell.c-st,
+  .mtbl .cell.c-conf,
+  .mtbl .cell.c-ep,
+  .mtbl .cell.c-pts {
+    flex: 0 0 62px; width: 62px; min-width: 0;
+    padding: 0 4px; overflow: hidden;
+  }
+  .mtbl .cell.c-st { justify-content: flex-end; }
+
+  /* A 60px column has 52px inside it. The sort arrow comes down
+     to the size of the caption beside it and the gap with it,
+     which is what lets "STATUS" and its arrow stand on one
+     line. */
+  .mtbl .thead .cell > svg { width: 12px; height: 12px; flex: 0 0 12px; }
+  .mtbl .thead .cell { gap: 2px; }
+  .mtbl .thead .cell .t-caption { overflow-wrap: break-word; }
+
+  /* The federation's conference, under its code in Statistics,
+     is the one thing in the pinned pair that has to give: the
+     region word is shortened by review22.js the way review10
+     shortens it in a column of its own, and what is left is set
+     at the caption's smallest. */
+  .mtbl .cell.c-fed .wt-sub {
+    font-size: 9px;
+    line-height: 11px;
+    letter-spacing: 0;
+    white-space: nowrap;
+  }
+
+  /* A conference name in a 62px column is two lines at 11px and
+     three at twelve; two is what the row is built for. */
+  .mtbl .cell.c-conf,
+  .mtbl .cell.c-conf .t-body-s { font-size: 11px; line-height: 13px; }
+
+  /* ---- 3  Standings and Statistics: Export beside Filter -----
+     Export was under the filter button and hard against the left
+     margin, a full row of its own for one button. review22.js
+     puts it in a row with the filter button; the row is what
+     keeps the fold's panel below the two of them. */
+  .mfx {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  .mfx > .mfilt-btn { flex: 0 0 auto; }
+  .mfx > .x-export { flex: 0 0 auto; margin: 0; }
+
+  /* ---- 4  the legend reads from the left --------------------
+     Round nineteen gave `.tblbar > .legend-top` a `margin-left:
+     auto` so that on a desktop the legend ends at the table's
+     right edge. On a phone the legend is a column of four items
+     and round five had already set it to the full width from the
+     left — but at one class less, so the desktop rule won on
+     specificity whatever the order of the files. Restated here
+     at the same weight, and last. */
+  .tblbar > .legend-top,
+  .tblbar > .legend {
+    margin-left: 0;
+    flex: 1 1 100%;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  /* ---- 5  the calendar's two views start at the margin -------
+     `.cal-view { margin-left: auto }` is the desktop's answer —
+     the chips end at the right edge, opposite the region
+     filters. On a phone the region filters are inside the fold
+     and the chips are the only thing on the line, so they begin
+     where every other control on the page begins. */
+  .cal-bar > .cal-view { margin-left: 0; margin-right: auto; }
+
+  /* ---- 6  the roster rail ends on the margin it began on -----
+     The rail bleeds to the right so the next card shows at the
+     edge, which left the last card hard against the screen when
+     it got there — no margin at all on the side that had 16px on
+     the other. Trailing padding inside a scroll container is not
+     honoured everywhere, so the margin is an item of the flex
+     row rather than padding on it. */
+  .e10::after,
+  .e10-scorers::after {
+    content: '';
+    flex: 0 0 16px;
+    /* the row already puts its 12px gap before this one, and the
+       margin the last card wants is 16px in total, not 28 */
+    margin-left: -12px;
+    align-self: stretch;
+  }
+
+  /* ---- 7  the conference timeline on a phone -----------------
+     .tpl-content is a 20px column here, so 4px on each side of
+     the block makes the 24px asked for. */
+  .cnf-timeline { margin: 4px 0; }
+}
