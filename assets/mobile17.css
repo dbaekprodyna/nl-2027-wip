@@ -1,0 +1,105 @@
+/* ============================================================
+   Mobile 17 — 2026-09-07
+   The Live now filter joins its heading, the pinned federation
+   column comes in to the width of an IOC code, the conference
+   timeline scrolls instead of being cut, and the pools header
+   stands on the phone's own columns.
+   Loaded last, after mobile16.css.
+   ============================================================ */
+
+@media (max-width: 767px) {
+
+  /* ---- 1  Live now: the filter is part of the heading --------
+     The button was right-aligned on a line of its own under
+     "Live now" — a whole row of screen for one control, and a
+     row the eye has to cross before it reaches the first live
+     conference. It moves up beside the heading, where the
+     desktop has always kept it (review23.js does the move; this
+     is where it lands).
+
+     .filterbar becomes display:contents once the button has
+     left, so the empty bar takes no height and the fold's panel
+     — which is still inside it — lays out as a full-width child
+     of the section instead of a child of an empty row.       */
+  .filterbar.mfilt-lifted { display: contents; }
+  .el01 > .mfilt-btn {
+    margin-left: auto;
+    flex: 0 0 auto;
+    align-self: center;
+  }
+
+
+  /* ---- 2  the pinned federation column, at the code's width --
+     Round twenty-two set the pair that stays put at 30 + 112.
+     112px was measured on Statistics, where the cell carries a
+     conference under the code; every other table shows a flag
+     and three letters in it and had 26px of air on the right.
+     The column is stated at what a flag and a code need — 24 +
+     6 + 44, plus the cell's 12px of padding — and the 24px that
+     buys goes to the figures travelling past it.
+
+     Statistics keeps its conference line by saying it shorter,
+     not by making every table wider for it. At 112px the line
+     was already being cut mid-word ("AMER SOUTH U2"); wrapping
+     it instead made every third row two lines taller than its
+     neighbours, which is worse than either. review23.js takes
+     the zone down to its letter — AFR E, AMER S — and the line
+     then stands on one, at the caption's smallest size.      */
+  .mtbl .cell.c-fed {
+    flex: 0 0 88px;
+    width: 88px;
+  }
+  .mtbl .cell.c-fed .wt-sub {
+    font-size: 8px;
+    line-height: 10px;
+    letter-spacing: -0.1px;
+    white-space: nowrap;
+  }
+
+
+  /* ---- 3  the conference timeline is a rail ------------------
+     .s02 is `min-width: max-content` on a phone — six stops at
+     108px is 648px — and round twenty-two put it in a .tpl-sub
+     with nothing to scroll it, so the last three stops were
+     simply cut off at the screen edge. It gets the same full
+     bleed rail treatment S-02 already has inside the stop
+     navigation: the block reaches both edges, the stops keep
+     their real size, and the swipe reads.                    */
+  .cnf-timeline {
+    margin: 4px -16px;
+    padding: 0 16px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    overscroll-behavior-x: contain;
+  }
+  .cnf-timeline::-webkit-scrollbar { display: none; }
+
+
+  /* ---- 4  S-05 Pools: the header's columns are the rows' -----
+     Round twenty gave the three header labels the rows' column
+     width so they would stand over the figures they name — and
+     stated it as 64px, the desktop's width. mobile10 had already
+     brought the rows' own figure cells down to 56px, so on a
+     phone the header was three 64px cells over three 56px ones:
+     W–L sat 16px left of its figures and PF 8px left of its own.
+     Only PA, the column that ends on the table's right edge,
+     ever lined up. One width, taken from the row.            */
+  .s05-hn > .tip-anchor {
+    width: 56px;
+    flex: 0 0 56px;
+  }
+
+
+  /* ---- 5  Federation Overview on a phone ---------------------
+     On a desktop these four cards are read as a row and a
+     pointer tells you which one you are on: the card fills with
+     the light grey the system uses for a raised surface. A phone
+     has no pointer, so the state that says "this is a card you
+     can open" has to be the resting state. Every category card
+     carries the hover fill from the start; the two a federation
+     does not field are still told apart by being dimmed.
+     (review23.css is what makes each card fill its own box —
+     until now all four fills were sized to the grid.)        */
+  .fed-card { --of: var(--surface-sunken); }
+}

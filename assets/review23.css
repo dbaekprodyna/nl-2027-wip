@@ -1,0 +1,115 @@
+/* ============================================================
+   Review 23 — 2026-09-07
+   Seed read next to the name it belongs to, a timeline mark
+   sized to the dot that carries it, the pools header standing
+   on its own columns, and the category cards getting their own
+   surface back.
+   Loaded after review22.css and before hero.css.
+   ============================================================ */
+
+/* ---- 1  SEED reads off the federation ------------------------
+   Round twenty-two moved Seed next to Federation in the DOM and
+   gave the standings table a stated width for every column. It
+   still did not read as "next to": Federation is a left-aligned
+   name and Seed was a right-aligned figure, so the two stood at
+   opposite ends of a gap the width of a thumb — 146px on the
+   standings table, 120 on a conference one.
+
+   A column reads down the edge its content sits on. Seed's edge
+   is put on the left, header and figures together, so the number
+   begins where the name it qualifies ends. It is the only figure
+   column that is not read against the ones beside it — it is
+   read against the federation — which is why it is the only one
+   that changes side.
+
+   Desktop only: on a phone the columns are 62px and the figure
+   is already against the name.                              */
+@media (min-width: 768px) {
+  /* the figures */
+  .tbl .cell.c-wtseed,
+  .wt-tbl .cell.c-wtseed { justify-content: flex-start; }
+
+  /* the heading. Round twenty reversed every numeric heading so
+     the sort arrow sits inboard of the label and the label ends
+     on the column's right edge. A left-aligned column wants the
+     plain order back: label first, arrow after it. */
+  .tbl .thead .cell.c-wtseed,
+  .wt-tbl .thead .cell.c-wtseed,
+  .wt-tbl .thead .c-wtseed.cell-num.cell-sortable {
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+  .tbl .thead .cell.c-wtseed .t-caption,
+  .wt-tbl .thead .cell.c-wtseed .t-caption { text-align: left; }
+
+  /* Standings and Qualification: Federation was given 300px in
+     round twenty-two, which is 67 more than its longest name
+     actually draws ("KOR Republic of Korea", 225px, plus the 8px
+     the cell is indented by). Those 67 pixels were the distance
+     between a federation and its seed. They go to Conference,
+     which is the column that holds the longest text in the
+     table. */
+  .tbl:not(.wt-tbl) > .thead > .c-fed,
+  .tbl:not(.wt-tbl) > .trow  > .c-fed { flex: 0 0 240px; width: 240px; }
+}
+
+
+/* ---- 2  S-02 StopTimeline: the check inside the dot ----------
+   Round twenty-two opened the dot to 20px so a played stop could
+   carry a mark rather than only a colour, and put a 12px check
+   in it. At that size the check is the dot: there is no ring of
+   black left around it and the mark reads as a filled blob.
+   The dot keeps its 20px — it is the rail's rhythm and the live
+   stop's red circle — and the check comes down to 8px, which
+   leaves the circle visible around it on both the desktop and
+   the phone.
+
+   ★ And it was never being drawn at 12px in the first place.
+   modules.css states `.s02-done .s02-line, .s02-done .s02-dot {
+   background: var(--action-default) }` — a SHORTHAND, at two
+   classes, which resets background-size, -repeat and -position to
+   their initial values for every played dot. Round twenty-two set
+   all three on `.s02-dot`, one class, so the shorthand won and the
+   check was drawn at its intrinsic size (an SVG with no intrinsic
+   size fills the box), tiled, from the top left corner. The three
+   properties are restated here at the same weight as the shorthand
+   and after it.
+   Lesson, and it is the third time this file has had to say it:
+   a background shorthand anywhere in the cascade wipes every
+   background longhand a later rule of lower specificity sets. */
+.s02-dot,
+.s02-done .s02-dot,
+.s02-live .s02-dot {
+  background-size: 8px 8px;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+
+/* ---- 3  S-05 Pools: the advancing row keeps the grid ---------
+   The same defect round twenty-two found on .trow-hi: the mark
+   for a side that advances is a 4px left border, which is 4px
+   the marked row's cells have and no other row's do. Pool A's
+   leader stood four pixels right of the two rows under it. The
+   mark is drawn inside the row instead, where it costs no
+   width. */
+.s05-adv {
+  border-left: 0;
+  box-shadow: inset 4px 0 0 0 var(--action-default);
+}
+
+
+/* ---- 4  Federation Overview: a card that is its own box ------
+   .cutfill is `position: absolute; inset: 0` — it fills its
+   nearest POSITIONED ancestor, and .fed-card was the one cut
+   container in the codebase that never set `position: relative`.
+   All four fills were therefore sized to the grid, stacked on
+   top of one another, and the last card's fill painted over
+   every card above it: the first card lost its top edge, the
+   cut corner drawn at the top-left belonged to the grid rather
+   than to the card, and no card had a frame of its own.
+
+   One property fixes all of it. (base.css already gives the
+   card's other children `position: relative` through
+   `.cut-out > *:not(.cutfill)`, so nothing else has to move.) */
+.fed-card { position: relative; }
