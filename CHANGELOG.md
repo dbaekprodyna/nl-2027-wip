@@ -1,5 +1,45 @@
 # Changelog
 
+## 2026-10-07 — The design system catches up with the pages
+
+`system/` had stopped at review 15: the shell never linked
+`review16.css`–`review21.css`, and every component that `site.js`
+redrew after that (the WT standings columns, the stop tabs, the
+compact qualification board, the month calendar, Federation Overview,
+the off- and pre-season home) existed only on the pages. Specimens are
+now taken from the rendered pages themselves instead of being redrawn
+by hand — `tools/ds-sync/` harvests them, `tools/p35_ds_sync.py`
+puts them in place.
+
+**The shell.** It links `review16.css`–`review21.css`, `site.css` (the
+page builder's own rules — `a.nav-a`, `.sr-only`, the More item, the
+E-03 stroke — which harvested markup relies on) and `hero.css`, in the
+same order the pages do. `.stage [class]{max-width:100%}` was erasing
+the filter row's column widths; `shell.css` gives them back.
+
+**Updated** — every specimen below now matches what the pages draw:
+ctl-01 (Export), ctl-03 (stop tabs, Stats tabs), ctl-04 (labelled
+select), el-02 (S is the size every page uses; the size specimens
+never carried their size class; category switch with All), el-04 and
+el-08 (WT columns), el-05 (mini), el-09 (legend in the table bar),
+el-13 (XS, static), el-30, F-02 (season switch), F-03 (Home, More),
+F-04 (el-23 breadcrumb, key-visual rule, team-page control), F-05,
+S-01 (WT table, gender switch on the caption line), S-03, S-04, S-05
+(`.s05-hn`), S-07 (Month / Day views), S-09 (plain type), R-01
+(compact board with its own switch), R-02 (one table, filter drawer,
+SEED), R-03 (WT columns), R-05 (Players and Teams tabs), E-01, E-02
+(now a composition of F-04 + stop tabs + S-02), E-03 (flat grid),
+E-04, E-09 (region chips), E-10 (Leading scorers), C-06 (video).
+S-11 StopMatrix is marked retired (review 18).
+
+**New** — el-33 FilterDrawer, F-07 HomeHero, E-12 FederationOverview,
+E-13 NextGeneration, R-06 SeasonChampions, C-07 SignupCTA,
+C-08 Winners.
+
+Older states that record a decision (F-04 at 320, the R-01 full-width
+board, the original E-02 block) are kept and labelled as such. Notes
+added in this pass are headed "Synced with the prototype · 7 Oct 2026".
+
 ## 2026-09-03 — Twentieth review: one axis per column
 
 Four of this round's twelve marks are the same mark: a table whose

@@ -140,6 +140,11 @@
     "desc": "Region filter — a row of el-14 Chip at size M. \"AsiaPacific\" is one word: that is the agreed naming rule, not a typo."
    },
    {
+    "slug": "el-33-filterdrawer",
+    "title": "el-33 FilterDrawer",
+    "desc": "One trigger for every filter on a page; the panel holds chips, selects and the toggle."
+   },
+   {
     "slug": "el-05-statusbadge",
     "title": "el-05 StatusBadge",
     "desc": "Six states, one geometry. Red is reserved for LIVE and appears nowhere else in the system. Not interactive, so it has no hover or focus."
@@ -281,6 +286,11 @@
     "desc": "The page identity block: breadcrumb, H1, and context. It is the most contested module in the system — one side of the review reads it as redundant with the navigation, the other de An identity column on the left and a control slot on the right, which is where el-02 GenderSwitch lives on every page."
    },
    {
+    "slug": "f-07-homehero",
+    "title": "F-07 HomeHero",
+    "desc": "Landing page hero band — photo plate, key-visual fragments, lockup and one link."
+   },
+   {
     "slug": "f-05-megamenu",
     "title": "F-05 MegaMenu",
     "desc": "What opens under More. Three columns of destinations plus one featured story, on the same black chrome as the navigation bar so the panel reads as an extension of it rather than as The current page is marked the way F-03 marks it — white label, white rule under it. The gold accent is a hover colour, not a selection."
@@ -392,6 +402,11 @@
     "desc": "The Stats page: the full field ranked on one metric, with the category chosen above the table. R-04 StatLeaders is the three-column summary that lives on other pages; this is the p"
    },
    {
+    "slug": "r-06-seasonchampions",
+    "title": "R-06 SeasonChampions",
+    "desc": "Off-season landing block — conference winners going to the U23 World Cup."
+   },
+   {
     "slug": "e-01-teamfinder",
     "title": "E-01 TeamFinder",
     "desc": "The gateway built on a simple assumption: fans look for their own federation and little else. Accepts a name or an IOC code."
@@ -410,6 +425,11 @@
     "slug": "e-04-teamheader",
     "title": "E-04 TeamHeader",
     "desc": "Federation identity at the top of a team page: flag, name, category, conference, qualification state, and the six numbers that describe the season. The gender switch is not part of this module — it lives in F-04’s control slot. Previously it sa"
+   },
+   {
+    "slug": "e-12-federationoverview",
+    "title": "E-12 FederationOverview",
+    "desc": "Team page with All selected — one card per category, each linking to its team site."
    },
    {
     "slug": "e-05-playerheader",
@@ -440,6 +460,11 @@
     "slug": "e-10-rostergrid",
     "title": "E-10 RosterGrid",
     "desc": "The squad on a team page, in two views. Cards are the default because the roster is the emotional part of a team page; the list is for anyone comparing numbers."
+   },
+   {
+    "slug": "e-13-nextgeneration",
+    "title": "E-13 NextGeneration",
+    "desc": "Pre-season landing block — six E-08 player cards per gender."
    },
    {
     "slug": "e-11-searchresults",
@@ -475,6 +500,16 @@
     "slug": "c-06-contentpage",
     "title": "C-06 ContentPage",
     "desc": "The template behind About, How it works and FAQ: a sticky table of contents on the left, long-form body on the right, and el-19 DisclosureRow for anything question-shaped."
+   },
+   {
+    "slug": "c-07-signupcta",
+    "title": "C-07 SignupCTA",
+    "desc": "Off/pre-season e-mail sign-up block."
+   },
+   {
+    "slug": "c-08-winners",
+    "title": "C-08 Winners",
+    "desc": "Off-season landing gallery — one prize-ceremony photo per qualified federation."
    }
   ]
  },

@@ -235,3 +235,7 @@ html, body { overflow-x: clip; }
 .stage .f03-i { padding: 0 clamp(8px, 1vw, 16px); }
 .stage .f02 { padding-right: 16px; }
 
+
+/* p35 column widths — restore what `.stage [class]` overrides for the filter row */
+.stage .rowsplit > .search { max-width: var(--col-6); }
+.stage .selwrap { max-width: var(--col-2); }

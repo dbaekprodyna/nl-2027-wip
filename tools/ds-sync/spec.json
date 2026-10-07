@@ -1,0 +1,380 @@
+[
+ {
+  "name": "f02",
+  "page": "index.html",
+  "sel": ".f02"
+ },
+ {
+  "name": "f03",
+  "page": "index.html",
+  "sel": ".f03"
+ },
+ {
+  "name": "hnl_live",
+  "page": "index.html",
+  "sel": ".hnl"
+ },
+ {
+  "name": "s09_home",
+  "page": "index.html",
+  "sel": ".s09"
+ },
+ {
+  "name": "finder",
+  "page": "index.html",
+  "sel": ".finder"
+ },
+ {
+  "name": "live_sub",
+  "page": "index.html",
+  "sel": ".tpl-sub:has(> .s03wrap)"
+ },
+ {
+  "name": "qual_sub",
+  "page": "index.html",
+  "sel": ".tpl-sub:has(> .r01)"
+ },
+ {
+  "name": "c02",
+  "page": "index.html",
+  "sel": ".c02-h"
+ },
+ {
+  "name": "car_home",
+  "page": "index.html",
+  "sel": ".car"
+ },
+ {
+  "name": "badge_mini",
+  "page": "index.html",
+  "sel": ".badge-mini"
+ },
+ {
+  "name": "ftag_xs",
+  "page": "index.html",
+  "sel": ".ftag-xs"
+ },
+ {
+  "name": "hnl_off",
+  "page": "index.html#season=off",
+  "sel": ".hnl"
+ },
+ {
+  "name": "winners_sub",
+  "page": "index.html#season=off",
+  "sel": ".os-winsec"
+ },
+ {
+  "name": "s09_off",
+  "page": "index.html#season=off",
+  "sel": ".s09"
+ },
+ {
+  "name": "champs_sub",
+  "page": "index.html#season=off",
+  "sel": ".os-champions"
+ },
+ {
+  "name": "cta_off",
+  "page": "index.html#season=off",
+  "sel": ".os-ctasec"
+ },
+ {
+  "name": "hnl_pre",
+  "page": "index.html#season=pre",
+  "sel": ".hnl"
+ },
+ {
+  "name": "s13_pre",
+  "page": "index.html#season=pre",
+  "sel": ".os-cdsec"
+ },
+ {
+  "name": "cta_pre",
+  "page": "index.html#season=pre",
+  "sel": ".os-ctasec"
+ },
+ {
+  "name": "gen_sub",
+  "page": "index.html#season=pre",
+  "sel": ".os-nextgen17"
+ },
+ {
+  "name": "f04_conf",
+  "page": "conference.html",
+  "sel": ".f04"
+ },
+ {
+  "name": "tabs_conf",
+  "page": "conference.html",
+  "sel": ".cnf-stoptabs"
+ },
+ {
+  "name": "s02_conf",
+  "page": "conference.html",
+  "sel": ".cnf-timeline"
+ },
+ {
+  "name": "r03_sub",
+  "page": "conference.html",
+  "sel": ".tpl-sub:has(> .wt-scroll)"
+ },
+ {
+  "name": "e10_scorers",
+  "page": "conference.html",
+  "sel": ".tpl-sub:has(> .e10)"
+ },
+ {
+  "name": "f04_stop",
+  "page": "stop.html",
+  "sel": ".f04"
+ },
+ {
+  "name": "tabs_stop",
+  "page": "stop.html",
+  "sel": ".cnf-stoptabs"
+ },
+ {
+  "name": "stop_idl",
+  "page": "stop.html",
+  "sel": ".stop-idl"
+ },
+ {
+  "name": "s08",
+  "page": "stop.html",
+  "sel": ".s08"
+ },
+ {
+  "name": "s05_sub",
+  "page": "stop.html",
+  "sel": ".tpl-sub:has(> .s05)"
+ },
+ {
+  "name": "games_sub",
+  "page": "stop.html",
+  "sel": ".tpl-sub:has(> .games-tbl)"
+ },
+ {
+  "name": "f04_cal",
+  "page": "calendar.html",
+  "sel": ".f04"
+ },
+ {
+  "name": "cal_find",
+  "page": "calendar.html",
+  "sel": ".cal-find"
+ },
+ {
+  "name": "cal_month",
+  "page": "calendar.html",
+  "sel": ".tpl-sub:has(.cal-cardwrap)"
+ },
+ {
+  "name": "f04_team",
+  "page": "team.html",
+  "sel": ".f04"
+ },
+ {
+  "name": "e04",
+  "page": "team.html",
+  "sel": ".e04"
+ },
+ {
+  "name": "fed_ov",
+  "page": "team.html",
+  "sel": ".fed-ov"
+ },
+ {
+  "name": "f04_stats",
+  "page": "stats.html",
+  "sel": ".f04"
+ },
+ {
+  "name": "st_tabs",
+  "page": "stats.html",
+  "sel": ".st-tabs"
+ },
+ {
+  "name": "stats_filter",
+  "page": "stats.html",
+  "sel": ".tpl-sub:has(> .mfilt)"
+ },
+ {
+  "name": "stats_teams",
+  "page": "stats.html",
+  "sel": ".tpl-sub:has(> .wt-scroll)"
+ },
+ {
+  "name": "f04_stand",
+  "page": "standings.html",
+  "sel": ".f04"
+ },
+ {
+  "name": "stand_sub",
+  "page": "standings.html",
+  "sel": ".tpl-sub:has(> .tbl)"
+ },
+ {
+  "name": "stand_q_sub",
+  "page": "standings.html?view=qualification",
+  "sel": ".tpl-sub:has(> .tbl)"
+ },
+ {
+  "name": "conf_overview",
+  "page": "conferences.html",
+  "sel": ".tpl-sub:has(> .s09)"
+ },
+ {
+  "name": "cnf_bar",
+  "page": "conferences.html",
+  "sel": ".cnf-bar"
+ },
+ {
+  "name": "e03",
+  "page": "conferences.html",
+  "sel": ".e03"
+ },
+ {
+  "name": "teams_sub",
+  "page": "teams.html",
+  "sel": ".tpl-sub:has(> .e09)"
+ },
+ {
+  "name": "c06",
+  "page": "about.html",
+  "sel": ".c06"
+ },
+ {
+  "name": "e05",
+  "page": "player.html",
+  "sel": ".e05"
+ },
+ {
+  "name": "e06",
+  "page": "player.html",
+  "sel": ".e06"
+ },
+ {
+  "name": "gm_meta",
+  "page": "game.html",
+  "sel": ".f04"
+ },
+ {
+  "name": "gm_duo",
+  "page": "game.html",
+  "sel": ".gm-duo"
+ },
+ {
+  "name": "gm_teams",
+  "page": "game.html",
+  "sel": ".gm-teams"
+ },
+ {
+  "name": "gm_top",
+  "page": "game.html",
+  "sel": ".gm-top"
+ },
+ {
+  "name": "gm_box",
+  "page": "game.html",
+  "sel": ".gm-boxduo"
+ },
+ {
+  "name": "gm_stats",
+  "page": "game.html",
+  "sel": ".gm-stats"
+ },
+ {
+  "name": "gm_pbp",
+  "page": "game.html",
+  "sel": ".gm-pbp"
+ },
+ {
+  "name": "c04",
+  "page": "news.html",
+  "sel": ".c04"
+ },
+ {
+  "name": "c05",
+  "page": "article.html",
+  "sel": ".c05"
+ },
+ {
+  "name": "live_past",
+  "page": "index.html",
+  "pre": "document.querySelectorAll('.s03-d')[1].click()",
+  "sel": ".tpl-sub:has(> .s03wrap)"
+ },
+ {
+  "name": "live_future",
+  "page": "index.html",
+  "pre": "document.querySelectorAll('.s03-d')[6].click()",
+  "sel": ".tpl-sub:has(> .s03wrap)"
+ },
+ {
+  "name": "cal_day",
+  "page": "calendar.html",
+  "pre": "document.querySelectorAll('.cal-view .chip')[1].click()",
+  "sel": ".tpl-sub:has(.cal-bar)"
+ },
+ {
+  "name": "stats_players",
+  "page": "stats.html",
+  "pre": "document.querySelectorAll('.st-tabs .tab')[1].click()",
+  "sel": ".tpl-sub[data-pane=players]"
+ },
+ {
+  "name": "f03_conf",
+  "page": "conferences.html",
+  "sel": ".f03"
+ },
+ {
+  "name": "f03_stand",
+  "page": "standings.html",
+  "sel": ".f03"
+ },
+ {
+  "name": "e03_pre",
+  "page": "conferences.html#season=pre",
+  "sel": ".e03"
+ },
+ {
+  "name": "teams_af",
+  "page": "teams.html",
+  "pre": "document.querySelectorAll('.teams-bar .chip')[1].click()",
+  "sel": ".tpl-sub:has(> .e09)"
+ },
+ {
+  "name": "f04_player",
+  "page": "player.html",
+  "sel": ".f04"
+ },
+ {
+  "name": "stand_filter",
+  "page": "standings.html",
+  "pre": "document.querySelector('.mfilt-btn').click()",
+  "sel": ".mfilt"
+ },
+ {
+  "name": "stand_tblbar",
+  "page": "standings.html",
+  "sel": ".tblbar"
+ },
+ {
+  "name": "stand_rowsplit",
+  "page": "standings.html",
+  "sel": ".rowsplit"
+ },
+ {
+  "name": "search_ovl",
+  "page": "index.html",
+  "pre": "document.querySelector('.f03-search').click()",
+  "sel": ".ovl"
+ },
+ {
+  "name": "more_menu",
+  "page": "index.html",
+  "pre": "document.querySelector('.f03-more').click()",
+  "sel": ".site-mm, .f03-moremenu, .mm"
+ }
+]

@@ -433,3 +433,10 @@
 @media (max-width:900px) {
   .type-row { grid-template-columns:1fr; gap:8px; }
 }
+
+/* p35 hero specimen — on the page .hnl only shows under body.hero-nl (review3.css); the DS has no such body class */
+.m-frame .hnl {
+  position: relative; display: block; width: 100%; height: var(--hero-nl-h, 192px); overflow: hidden;
+  background: linear-gradient(102deg, var(--hero-from) 0%, var(--hero-to) 100%);
+}
+.m-frame:has(> .hnl) { padding: 0; }
